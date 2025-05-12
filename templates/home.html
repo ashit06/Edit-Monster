@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit Monster</title>
+  <style>
+    /* Base Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f5f7fa, #e4e8ed);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #2c3e50;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar .brand {
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    .navbar a:hover {
+      color: #1abc9c;
+    }
+
+    /* Main Content */
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .function-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 960px;
+      width: 100%;
+    }
+    .func-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .func-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    .func-box h2 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      color: #2c3e50;
+    }
+    .func-box p {
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .func-box a.btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #2c3e50;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .func-box a.btn:hover {
+      background: #1a242f;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #777;
+      background: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="brand">Edit Monster</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="{{ url_for('convert_page') }}">Convert</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Functions -->
+  <div class="container">
+    <div class="function-grid">
+      <!-- Convert Format -->
+      <div class="func-box">
+        <h2>Convert Image Format</h2>
+        <p>Quickly convert images between PNG, JPG, GIF and more.</p>
+        <a href="{{ url_for('convert_page') }}" class="btn">Go to Converter</a>
+      </div>
+
+      <!-- Future Functions Placeholder -->
+      <div class="func-box">
+        <h2>More Coming Soon</h2>
+        <p>Stay tuned for additional editing features!</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; 2025 Edit Monster. Developed by Arpit Agrahari.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Convert Image Format</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #f0f2f5;
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: #fff;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: #2c3e50;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background: #1a242f;
+      transform: translateY(-2px);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #2c3e50;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Convert Image Format</h2>
+    <form action="{{ url_for('convert') }}" method="POST" enctype="multipart/form-data">
+      <label for="image">Select Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+
+      <label for="format">Choose Format:</label>
+      <select id="format" name="format" required>
+        <option value="png">PNG</option>
+        <option value="jpg">JPG</option>
+        <option value="bmp">BMP</option>
+        <option value="webp">WEBP</option>
+      </select>
+
+      <button type="submit">Convert Now</button>
+    </form>
+    <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>
