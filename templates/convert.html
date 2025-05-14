@@ -1,102 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Convert Image Format</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shifter - Edit Monster</title>
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a55eea;
+            --accent-color: #fd79a8;
+            --background-color: #f5f6fa;
+            --text-color: #2d3436;
+            --card-hover: #8c7ae6;
+        }
 
-    body {
-      font-family: 'Georgia', serif;
-      background: #f0f2f5;
-      color: #333;
-      padding: 40px 20px;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .container {
-      background: #fff;
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #2c3e50;
-      text-align: center;
-    }
+        /* Navbar Styles */
+        .navbar {
+            background: var(--primary-color);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 0.95rem;
-    }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    input[type="file"],
-    select {
-      width: 100%;
-      padding: 10px 12px;
-      margin-top: 8px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: #fafafa;
-    }
+        .brand {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      background: #2c3e50;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
+        .brand i {
+            font-size: 2rem;
+            color: #ffeaa7;
+        }
 
-    button:hover {
-      background: #1a242f;
-      transform: translateY(-2px);
-    }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
 
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #2c3e50;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .back-link:hover {
-      text-decoration: underline;
-    }
-  </style>
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 6rem 2rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 1.2rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            border: 2px dashed var(--secondary-color);
+            border-radius: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: var(--primary-color);
+            background: #fff;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(165, 94, 234, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            background: var(--card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .main-content {
+                padding: 8rem 1rem 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Convert Image Format</h2>
-    <form action="{{ url_for('convert') }}" method="POST" enctype="multipart/form-data">
-      <label for="image">Select Image:</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="brand">
+                <i class="fas fa-dragon"></i>
+                Edit Monster
+            </a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('resize') }}"><i class="fas fa-expand"></i> Resize</a></li>
+                <li><a href="{{ url_for('crop') }}"><i class="fas fa-crop"></i> Crop</a></li>
+                <li><a href="{{ url_for('rotate') }}"><i class="fas fa-sync"></i> Rotate</a></li>
+                <li><a href="{{ url_for('filters') }}"><i class="fas fa-magic"></i> Filters</a></li>
+                <li><a href="{{ url_for('compress') }}"><i class="fas fa-compress"></i> Compress</a></li>
+                <li><a href="{{ url_for('convert_page') }}"><i class="fas fa-exchange-alt"></i> Shifter</a></li>
+            </ul>
+        </div>
+    </nav>
 
-      <label for="format">Choose Format:</label>
-      <select id="format" name="format" required>
-        <option value="png">PNG</option>
-        <option value="jpg">JPG</option>
-        <option value="bmp">BMP</option>
-        <option value="webp">WEBP</option>
-      </select>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>Monster Shifter</h2>
+            <p class="description">Transform your images into different formats with monstrous magic!</p>
+            
+            <form action="{{ url_for('convert') }}" method="POST" enctype="multipart/form-data">
+                <label for="image">Choose Your Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
 
-      <button type="submit">Convert Now</button>
-    </form>
-    <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
-  </div>
+                <label for="format">Choose Your Format:</label>
+                <select id="format" name="format" required>
+                    <option value="png">PNG - Perfect Monster Quality</option>
+                    <option value="jpg">JPG - Compact Beast Mode</option>
+                    <option value="bmp">BMP - Raw Monster Power</option>
+                    <option value="webp">WEBP - Web Monster Format</option>
+                </select>
+
+                <button type="submit">
+                    <i class="fas fa-magic"></i>
+                    Transform Your Image
+                </button>
+            </form>
+            <a href="{{ url_for('home') }}" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Monster's Lair
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Edit Monster - Unleashing Image Editing Magic. Created by Arpit Agrahari.</p>
+    </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Monster - Home</title>
+    <title>Beast Crop - Edit Monster</title>
     <style>
         :root {
             --primary-color: #6c5ce7;
@@ -90,53 +90,21 @@
         .main-content {
             flex: 1;
             padding: 6rem 2rem 2rem;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             width: 100%;
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-section h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .function-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 1rem;
-        }
-
-        .func-box {
+        .container {
             background: white;
             padding: 2rem;
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .func-box::before {
+        .container::before {
             content: '';
             position: absolute;
             top: 0;
@@ -146,42 +114,112 @@
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
         }
 
-        .func-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .func-box h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
+            text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .func-box p {
+        .description {
+            text-align: center;
             color: #666;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-size: 1.1rem;
-            line-height: 1.6;
         }
 
-        .func-box .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 1rem 2rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
+        label {
+            display: block;
+            margin-top: 1.2rem;
             font-weight: bold;
-            border-radius: 10px;
-            transition: all 0.3s;
+            font-size: 1.1rem;
+            color: var(--text-color);
         }
 
-        .func-box .btn:hover {
+        input[type="file"] {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            border: 2px dashed var(--secondary-color);
+            border-radius: 10px;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: var(--primary-color);
+            background: #fff;
+        }
+
+        .crop-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .crop-grid label {
+            margin-top: 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(165, 94, 234, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
             background: var(--card-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--secondary-color);
         }
 
         /* Footer */
@@ -216,20 +254,17 @@
                 padding: 8rem 1rem 2rem;
             }
 
-            .hero-section h1 {
-                font-size: 2rem;
+            h2 {
+                font-size: 1.8rem;
             }
 
-            .hero-section p {
-                font-size: 1.1rem;
+            .description {
+                font-size: 1rem;
             }
 
-            .function-grid {
+            .crop-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .func-box h2 {
-                font-size: 1.6rem;
+                gap: 1rem;
             }
         }
     </style>
@@ -257,71 +292,42 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="hero-section">
-            <h1>Edit Monster</h1>
-            <p>Edit your images online with our powerful monster tools!</p>
-        </div>
+        <div class="container">
+            <h2>Beast Crop</h2>
+            <p class="description">Slice and dice your images with monstrous precision!</p>
+            
+            <form action="{{ url_for('crop') }}" method="POST" enctype="multipart/form-data">
+                <label for="image">Choose Your Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
 
-        <div class="function-grid">
-            <!-- Resize -->
-            <div class="func-box">
-                <h2>Monster Resize</h2>
-                <p>Transform your images to any size with monstrous precision!</p>
-                <a href="{{ url_for('resize') }}" class="btn">
-                    <i class="fas fa-expand"></i>
-                    Unleash Resize Power
-                </a>
-            </div>
+                <div class="crop-grid">
+                    <div>
+                        <label for="x">X Position:</label>
+                        <input type="number" id="x" name="x" min="0" required placeholder="e.g. 0">
+                    </div>
+                    <div>
+                        <label for="y">Y Position:</label>
+                        <input type="number" id="y" name="y" min="0" required placeholder="e.g. 0">
+                    </div>
+                    <div>
+                        <label for="width">Width:</label>
+                        <input type="number" id="width" name="width" min="1" required placeholder="e.g. 200">
+                    </div>
+                    <div>
+                        <label for="height">Height:</label>
+                        <input type="number" id="height" name="height" min="1" required placeholder="e.g. 200">
+                    </div>
+                </div>
 
-            <!-- Crop -->
-            <div class="func-box">
-                <h2>Beast Crop</h2>
-                <p>Slice and dice your images with monstrous precision!</p>
-                <a href="{{ url_for('crop') }}" class="btn">
+                <button type="submit">
                     <i class="fas fa-crop"></i>
                     Release the Crop Beast
-                </a>
-            </div>
-
-            <!-- Rotate -->
-            <div class="func-box">
-                <h2>Monster Rotator</h2>
-                <p>Twist and flip your images with monstrous power!</p>
-                <a href="{{ url_for('rotate') }}" class="btn">
-                    <i class="fas fa-sync"></i>
-                    Unleash the Rotation
-                </a>
-            </div>
-
-            <!-- Filters -->
-            <div class="func-box">
-                <h2>Monster Magic</h2>
-                <p>Transform your images with magical monster effects!</p>
-                <a href="{{ url_for('filters') }}" class="btn">
-                    <i class="fas fa-magic"></i>
-                    Cast Monster Magic
-                </a>
-            </div>
-
-            <!-- Compress -->
-            <div class="func-box">
-                <h2>Monster Compressor</h2>
-                <p>Shrink your images with monstrous might!</p>
-                <a href="{{ url_for('compress') }}" class="btn">
-                    <i class="fas fa-compress"></i>
-                    Unleash the Compressor
-                </a>
-            </div>
-
-            <!-- Format Shifter -->
-            <div class="func-box">
-                <h2>Monster Shifter</h2>
-                <p>Transform your images into different formats with monstrous magic!</p>
-                <a href="{{ url_for('convert_page') }}" class="btn">
-                    <i class="fas fa-exchange-alt"></i>
-                    Transform Format
-                </a>
-            </div>
+                </button>
+            </form>
+            <a href="{{ url_for('home') }}" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Monster's Lair
+            </a>
         </div>
     </main>
 
@@ -330,4 +336,4 @@
         <p>&copy; 2024 Edit Monster - Unleashing Image Editing Magic. Created by Arpit Agrahari.</p>
     </footer>
 </body>
-</html>
+</html> 
